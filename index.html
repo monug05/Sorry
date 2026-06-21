@@ -582,7 +582,20 @@ function loadConfetti(){
   return confettiPromise;
 }
 
+function logEvent(name){
+  try{
+    fetch("/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name })
+    });
+  }catch(e){
+    // Logging is best-effort; never block the UI on it.
+  }
+}
+
 document.getElementById("yes").addEventListener("click", async () => {
+  logEvent("yes");
   const msg = document.getElementById("msg");
   msg.textContent = "Thank you sakshee";
   msg.classList.add("is-visible");
@@ -606,7 +619,15 @@ function dodge(){
   btn.style.top = Math.random() * maxY + "px";
 }
 
+let notYetLogged = false;
+function logNotYetOnce(){
+  if(notYetLogged) return;
+  notYetLogged = true;
+  logEvent("not_yet");
+}
+
 btn.addEventListener("pointerenter", () => {
+  logNotYetOnce();
   btn.style.pointerEvents = "none";
   dodge();
   setTimeout(() => { btn.style.pointerEvents = "auto"; }, 150);
@@ -614,6 +635,7 @@ btn.addEventListener("pointerenter", () => {
 
 btn.addEventListener("touchstart", (e) => {
   e.preventDefault();
+  logNotYetOnce();
   dodge();
 }, { passive: false });
 
