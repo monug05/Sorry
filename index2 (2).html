@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="A personal apology page for Sakshee.">
+<meta name="theme-color" content="#0b0f19">
+<meta name="color-scheme" content="dark">
+<title>Sorry</title>
+
+<link rel="icon" href="data:,">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://res.cloudinary.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" fetchpriority="high" href="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1300/v1782062814/20250614_135309_enuzz6.jpg">
+
+<style>
+
+:root{
+--bg:#0b0f19;
+--bg-alt:#0f172a;
+--bg-alt-2:#101827;
+--card-bg:#111827;
+--text:#ffffff;
+--accent:#4f46e5;
+--accent-soft:#818cf8;
+--btn-muted:#374151;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+padding-left:env(safe-area-inset-left);
+padding-right:env(safe-area-inset-right);
+}
+
+img{
+max-width:100%;
+}
+
+button:focus-visible,
+a:focus-visible{
+outline:3px solid var(--accent-soft);
+outline-offset:2px;
+}
+
+h2{
+font-size:clamp(1.6rem,4vw,2.3rem);
+font-weight:600;
+}
+
+h3{
+font-size:clamp(1.25rem,3vw,1.6rem);
+}
+
+/* HERO */
+.hero{
+height:100vh;
+min-height:100vh;
+height:100dvh;
+min-height:100dvh;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+overflow:hidden;
+background:var(--bg);
+}
+
+.hero-bg{
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+opacity:0;
+transition:opacity 1.2s ease;
+}
+
+.hero-bg.active{
+opacity:1;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.6);
+z-index:1;
+}
+
+.card{
+position:relative;
+z-index:2;
+width:90%;
+max-width:800px;
+padding:clamp(28px,6vw,50px);
+text-align:center;
+border-radius:25px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+}
+
+h1{
+font-size:clamp(2rem,6vw,3.5rem);
+margin-bottom:20px;
+min-height:1.2em;
+opacity:0;
+animation:fadeUp .8s ease forwards;
+}
+
+.card p{
+line-height:1.7;
+margin-bottom:20px;
+opacity:0;
+animation:fadeUp .8s .15s ease forwards;
+}
+
+.card a{
+display:inline-block;
+opacity:0;
+animation:fadeUp .8s .3s ease forwards;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+button{
+padding:clamp(13px,3vw,15px) clamp(22px,5vw,28px);
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-weight:600;
+font-family:inherit;
+font-size:clamp(0.95rem,2vw,1rem);
+touch-action:manipulation;
+transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.primary{
+background:var(--accent);
+color:white;
+}
+
+.primary:active{
+transform:scale(.96);
+}
+
+@media (hover:hover) and (pointer:fine){
+.primary:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(79,70,229,.4);
+}
+}
+
+/* SORRY CARD */
+.sorry-section{
+padding:clamp(60px,10vw,100px) clamp(20px,8vw,18%);
+background:var(--bg-alt);
+text-align:center;
+}
+
+.sorry-card{
+max-width:900px;
+margin:0 auto;
+background:var(--card-bg);
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+.sorry-card img{
+width:100%;
+height:auto;
+max-height:500px;
+object-fit:contain;
+background:#000;
+display:block;
+}
+
+.sorry-content{
+padding:clamp(20px,4vw,30px);
+}
+
+.sorry-content h3{
+margin-bottom:15px;
+}
+
+.sorry-content p{
+margin:12px 0;
+line-height:1.7;
+opacity:0.9;
+font-size:clamp(0.92rem,2.2vw,1rem);
+}
+
+/* GALLERY */
+.gallery{
+padding:clamp(60px,10vw,100px) clamp(20px,8vw,8%);
+background:var(--bg-alt-2);
+text-align:center;
+content-visibility:auto;
+contain-intrinsic-size:1200px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:40px;
+max-width:1500px;
+margin-inline:auto;
+}
+
+.grid img{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+border-radius:15px;
+cursor:zoom-in;
+display:block;
+background:#1f2937;
+transition:transform .4s ease;
+}
+
+@media (hover:hover) and (pointer:fine){
+.grid img:hover{
+transform:scale(1.05);
+}
+}
+
+/* SCROLL REVEAL */
+.reveal{
+opacity:0;
+transform:translateY(24px);
+transition:opacity .6s ease, transform .6s ease;
+}
+
+.reveal.is-visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.9);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+cursor:zoom-out;
+opacity:0;
+visibility:hidden;
+transition:opacity .25s ease;
+padding:20px;
+padding:max(20px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));
+}
+
+.lightbox.is-open{
+opacity:1;
+visibility:visible;
+}
+
+.lightbox img{
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+border-radius:8px;
+}
+
+.lightbox-close{
+position:absolute;
+top:max(16px,env(safe-area-inset-top));
+right:max(16px,env(safe-area-inset-right));
+width:44px;
+height:44px;
+border-radius:50%;
+background:rgba(255,255,255,.12);
+color:white;
+font-size:1.4rem;
+line-height:1;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+border:none;
+}
+
+/* FINAL SECTION */
+.final-section{
+padding:clamp(60px,12vw,100px) clamp(20px,8vw,20%);
+text-align:center;
+background:var(--bg-alt);
+content-visibility:auto;
+contain-intrinsic-size:600px;
+}
+
+.yes-wrap{
+margin-top:40px;
+}
+
+#noArea{
+margin-top:50px;
+height:120px;
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+#madBtn{
+background:var(--btn-muted);
+color:white;
+position:absolute;
+transition:left .15s ease, top .15s ease;
+touch-action:none;
+}
+
+#msg{
+margin-top:30px;
+font-size:clamp(1.1rem,3vw,1.4rem);
+min-height:1.4em;
+opacity:0;
+transition:opacity .4s ease;
+}
+
+#msg.is-visible{
+opacity:1;
+}
+
+@media(max-width:480px){
+.grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;}
+}
+
+@media (prefers-reduced-motion: reduce){
+html{scroll-behavior:auto;}
+.hero-bg{transition:none;}
+.grid img{transition:none;}
+.reveal{transition:none;opacity:1;transform:none;}
+h1,.card p,.card a{animation:none;opacity:1;}
+#madBtn{transition:none;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+<div class="hero-bg active" id="heroBg1"></div>
+<div class="hero-bg" id="heroBg2"></div>
+<div class="overlay"></div>
+
+<div class="card">
+<h1 id="title"></h1>
+<p>I made mistakes. This is my honest apology.</p>
+<a href="#sorry"><button class="primary">Read Apology</button></a>
+</div>
+</section>
+
+<!-- SORRY CARD -->
+<section class="sorry-section" id="sorry">
+
+<h2 class="reveal">Sorry Card</h2>
+
+<div class="sorry-card reveal">
+
+<img
+src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1000/v1782062262/20260616_173833_1_kuj2js.jpg"
+srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_700/v1782062262/20260616_173833_1_kuj2js.jpg 700w,
+        https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1100/v1782062262/20260616_173833_1_kuj2js.jpg 1100w,
+        https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062262/20260616_173833_1_kuj2js.jpg 1600w"
+sizes="(max-width:768px) 100vw, 900px"
+alt="A photo of us" loading="eager" decoding="async" fetchpriority="high">
+
+<div class="sorry-content">
+
+<h3>A Message From Me</h3>
+
+<p>Sakshee i am sorry yar for all the things by me that hurted you</p>
+<p>Mai literally boht messed up bnda rha hun start se,different baate boht sari baate chize,baato ko connect krna ya remember krna its hard for anyone,itni baate bol chuka hai likh chuka hun aajtk ki kya bolu</p>
+<p>But i never lied to you never yar,ya mera intention kbhi meri baato se ya chizo se tumhe hurt krna nhi rha hai,just/bss bta do sb tumhe ki tumhe aisa na lge ki mai jhut bol rha ya mujhe glt na smjho ki mai aisi harkat chize behave kyu kr rha hun ya kiya,ya mai tumhari nazar mai glt na bn jao</p>
+<p>Mai kbhi se bura insaan nhi rha hun yar,na kisi ek ke saath bhi bura kiya hai maine aajtk,pr tumhe hurt kiya hai maine boht baar meri baato se harkato se aur i remember everything aur hr ek chiz ka realisation hai
+    ,Aur Mujhe sach mai nhi aaya ki how to express myself ya konsi baat kb rkhni hai tumhare samne ya kaise,pr maine sikha hai boht last ke months mai kaise baat rkhni hai aur bhi boht chize,maine start se meri life mai aur sbse jyada last ke months mai sb theek krne ka try kiya,sbkuch kiya hai</p>
+<p>Mai past ko nhi badal skta,pr i am changed yar,mujhe hr ek baat,chiz ka realisation hai,</p>
+<p>Bss ek chance yar,maine sach mai,kaise dikhao tumhe pr last ke months mai boht kuch kiya hai,boht changes laye hai khudme,bss one chance,i swear promise to you kbhi koi bhi chiz aisi nhi hogi meri taraf se jisse tumhe bura lgega ya past mai jo kuch bhi hua</p>
+<p>Please one chance,ek chance bss yar,ek new start koi past ki buri baate nhi meri taraf se kbhi bhi,koi aisi chiz nhi nothing from my side i promise you,aur i never break my promise yar,just one chance please</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- MOMENTS -->
+<section class="gallery" id="gallery">
+
+<h2 class="reveal">Moments</h2>
+
+<div class="grid">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062814/20250614_135309_enuzz6.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062814/20250614_135309_enuzz6.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062814/20250614_135309_enuzz6.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062814/20250614_135309_enuzz6.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062814/20250614_135309_enuzz6.jpg" alt="Memory photo" loading="eager" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062811/20250614_133950_f3tae6.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062811/20250614_133950_f3tae6.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062811/20250614_133950_f3tae6.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062811/20250614_133950_f3tae6.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062811/20250614_133950_f3tae6.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062724/20250629_102935_st0qqt.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062724/20250629_102935_st0qqt.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062724/20250629_102935_st0qqt.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062724/20250629_102935_st0qqt.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062724/20250629_102935_st0qqt.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062722/20250616_181435_pnbi0h.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062722/20250616_181435_pnbi0h.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062722/20250616_181435_pnbi0h.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062722/20250616_181435_pnbi0h.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062722/20250616_181435_pnbi0h.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062719/20250629_102954_vlvjvk.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062719/20250629_102954_vlvjvk.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062719/20250629_102954_vlvjvk.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062719/20250629_102954_vlvjvk.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062719/20250629_102954_vlvjvk.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062713/IMG-20250920-WA0010_b1xc8c.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062713/IMG-20250920-WA0010_b1xc8c.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062713/IMG-20250920-WA0010_b1xc8c.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062713/IMG-20250920-WA0010_b1xc8c.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062713/IMG-20250920-WA0010_b1xc8c.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062272/20250614_135538_edmsbn.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062272/20250614_135538_edmsbn.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062272/20250614_135538_edmsbn.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062272/20250614_135538_edmsbn.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062272/20250614_135538_edmsbn.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062266/20250616_181445_n9atp5.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062266/20250616_181445_n9atp5.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062266/20250616_181445_n9atp5.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062266/20250616_181445_n9atp5.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062266/20250616_181445_n9atp5.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062265/20250706_131238_ewxtdg.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062265/20250706_131238_ewxtdg.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062265/20250706_131238_ewxtdg.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062265/20250706_131238_ewxtdg.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062265/20250706_131238_ewxtdg.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062264/20250629_102947_wjgkjn.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062264/20250629_102947_wjgkjn.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062264/20250629_102947_wjgkjn.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062264/20250629_102947_wjgkjn.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062264/20250629_102947_wjgkjn.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062263/Photo_from_Gaurav_Kumar_nyq7zo.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062263/Photo_from_Gaurav_Kumar_nyq7zo.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062263/Photo_from_Gaurav_Kumar_nyq7zo.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062263/Photo_from_Gaurav_Kumar_nyq7zo.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062263/Photo_from_Gaurav_Kumar_nyq7zo.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062262/20260616_173833_1_kuj2js.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062262/20260616_173833_1_kuj2js.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062262/20260616_173833_1_kuj2js.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062262/20260616_173833_1_kuj2js.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062262/20260616_173833_1_kuj2js.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062261/20250720_171834_vhmb8n.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062261/20250720_171834_vhmb8n.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062261/20250720_171834_vhmb8n.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062261/20250720_171834_vhmb8n.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062261/20250720_171834_vhmb8n.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+<img class="reveal" src="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062260/20250616_160323_cya6cp.jpg" srcset="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_300/v1782062260/20250616_160323_cya6cp.jpg 300w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_500/v1782062260/20250616_160323_cya6cp.jpg 500w, https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_800/v1782062260/20250616_160323_cya6cp.jpg 800w" sizes="(max-width:480px) 45vw, (max-width:768px) 30vw, 280px" data-full="https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_1600/v1782062260/20250616_160323_cya6cp.jpg" alt="Memory photo" loading="lazy" decoding="async">
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+<section class="final-section">
+
+<h2 class="reveal">Can We Move Forward?</h2>
+
+<div class="yes-wrap reveal">
+<button id="yes" class="primary">Yes</button>
+</div>
+
+<div id="noArea" class="reveal">
+<button id="madBtn">Not Yet</button>
+</div>
+
+<div id="msg"></div>
+
+</section>
+
+<script>
+(function(){
+"use strict";
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function debounce(fn, wait){
+  let t;
+  return function(...args){
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+/* ---------- TYPEWRITER (textContent, no per-keystroke innerHTML reparse) ---------- */
+const text = "I Am Sorry Sakshee";
+const titleEl = document.getElementById("title");
+let i = 0;
+function type(){
+  if(i < text.length){
+    titleEl.textContent += text[i];
+    i++;
+    setTimeout(type, 90);
+  }
+}
+type();
+
+/* ---------- HERO BACKGROUND CROSSFADE, screen-size aware ---------- */
+const heroPhotos = [
+  { v: "v1782062814", f: "20250614_135309_enuzz6.jpg" },
+  { v: "v1782062722", f: "20250616_181435_pnbi0h.jpg" },
+  { v: "v1782062272", f: "20250614_135538_edmsbn.jpg" },
+  { v: "v1782062265", f: "20250706_131238_ewxtdg.jpg" }
+];
+
+function pickHeroWidth(){
+  return window.innerWidth <= 600 ? 800 : window.innerWidth <= 1100 ? 1300 : 1920;
+}
+let heroWidth = pickHeroWidth();
+function heroUrl(photo){
+  return `https://res.cloudinary.com/drqo95igb/image/upload/f_auto,q_auto,w_${heroWidth}/${photo.v}/${photo.f}`;
+}
+
+window.addEventListener("resize", debounce(() => { heroWidth = pickHeroWidth(); }, 200));
+
+const bg1 = document.getElementById("heroBg1");
+const bg2 = document.getElementById("heroBg2");
+
+heroPhotos.forEach(p => { const im = new Image(); im.src = heroUrl(p); });
+bg1.style.backgroundImage = `url(${heroUrl(heroPhotos[0])})`;
+
+let idx = 0;
+let showingFirst = true;
+
+setInterval(() => {
+  idx = (idx + 1) % heroPhotos.length;
+  const next = heroUrl(heroPhotos[idx]);
+  const incoming = showingFirst ? bg2 : bg1;
+  const outgoing = showingFirst ? bg1 : bg2;
+
+  incoming.style.backgroundImage = `url(${next})`;
+
+  const reveal = () => {
+    incoming.classList.add("active");
+    outgoing.classList.remove("active");
+  };
+
+  if(reduceMotion){
+    reveal();
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(reveal));
+  }
+
+  showingFirst = !showingFirst;
+}, 4000);
+
+/* ---------- YES BUTTON (confetti library loaded lazily, only when needed) ---------- */
+let confettiPromise = null;
+function loadConfetti(){
+  if(confettiPromise) return confettiPromise;
+  confettiPromise = new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js";
+    s.onload = resolve;
+    s.onerror = reject;
+    document.body.appendChild(s);
+  });
+  return confettiPromise;
+}
+
+document.getElementById("yes").addEventListener("click", async () => {
+  const msg = document.getElementById("msg");
+  msg.textContent = "Thank you sakshee";
+  msg.classList.add("is-visible");
+  try{
+    await loadConfetti();
+    if(typeof confetti === "function") confetti();
+  }catch(e){
+    // Confetti is decorative; the message still shows even if it fails to load.
+  }
+});
+
+/* ---------- MOVING "NOT YET" BUTTON (mouse, pen, and touch friendly) ---------- */
+const btn = document.getElementById("madBtn");
+const area = document.getElementById("noArea");
+
+function dodge(){
+  const rect = area.getBoundingClientRect();
+  const maxX = Math.max(rect.width - btn.offsetWidth, 0);
+  const maxY = Math.max(rect.height - btn.offsetHeight, 0);
+  btn.style.left = Math.random() * maxX + "px";
+  btn.style.top = Math.random() * maxY + "px";
+}
+
+btn.addEventListener("pointerenter", () => {
+  btn.style.pointerEvents = "none";
+  dodge();
+  setTimeout(() => { btn.style.pointerEvents = "auto"; }, 150);
+});
+
+btn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  dodge();
+}, { passive: false });
+
+window.addEventListener("resize", debounce(() => {
+  if(!btn.style.left) return;
+  const rect = area.getBoundingClientRect();
+  const maxX = Math.max(rect.width - btn.offsetWidth, 0);
+  const maxY = Math.max(rect.height - btn.offsetHeight, 0);
+  btn.style.left = Math.min(parseFloat(btn.style.left) || 0, maxX) + "px";
+  btn.style.top = Math.min(parseFloat(btn.style.top) || 0, maxY) + "px";
+}, 150));
+
+/* ---------- GALLERY LIGHTBOX (one reusable element + event delegation) ---------- */
+let lightbox = null;
+function ensureLightbox(){
+  if(lightbox) return lightbox;
+  lightbox = document.createElement("div");
+  lightbox.className = "lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+
+  const img = document.createElement("img");
+  img.alt = "Enlarged photo";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "lightbox-close";
+  closeBtn.setAttribute("aria-label", "Close");
+  closeBtn.textContent = "\u00D7";
+  closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
+
+  lightbox.appendChild(img);
+  lightbox.appendChild(closeBtn);
+  lightbox.addEventListener("click", closeLightbox);
+  document.body.appendChild(lightbox);
+  return lightbox;
+}
+function openLightbox(src){
+  const lb = ensureLightbox();
+  lb.querySelector("img").src = src;
+  lb.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+}
+function closeLightbox(){
+  if(!lightbox) return;
+  lightbox.classList.remove("is-open");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("gallery").addEventListener("click", (e) => {
+  const img = e.target.closest(".grid img");
+  if(img) openLightbox(img.dataset.full || img.src);
+});
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeLightbox();
+});
+
+/* ---------- SCROLL REVEAL (fires once per element, then disconnects) ---------- */
+const revealEls = Array.from(document.querySelectorAll(".reveal"));
+
+if(reduceMotion || !("IntersectionObserver" in window)){
+  revealEls.forEach(el => el.classList.add("is-visible"));
+} else {
+  const gridImgs = Array.from(document.querySelectorAll(".grid img"));
+  const columnsGuess = Math.max(1, Math.round(document.querySelector(".grid").clientWidth / 250));
+
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+
+      if(gridImgs.includes(el)){
+        const pos = gridImgs.indexOf(el) % columnsGuess;
+        el.style.transitionDelay = (pos * 70) + "ms";
+      }
+
+      el.classList.add("is-visible");
+      el.addEventListener("transitionend", () => { el.style.willChange = "auto"; }, { once: true });
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+  revealEls.forEach(el => {
+    el.style.willChange = "opacity, transform";
+    io.observe(el);
+  });
+}
+
+})();
+</script>
+
+</body>
+</html>
