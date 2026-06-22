@@ -89,8 +89,11 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Health-check endpoint — pinged every 5 min by UptimeRobot to prevent sleep
+  // Health-check endpoint — pinged every 5 min by UptimeRobot to prevent sleep.
+  // Logged to console (Render Logs tab) but NOT to in-memory buffer,
+  // so /admin/logs stays clean with only real human visitors.
   if (req.method === "GET" && reqUrl.pathname === "/ping") {
+    console.log(JSON.stringify({ type: "ping", time: new Date().toISOString(), ip: getClientIp(req) }));
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("ok");
     return;
