@@ -89,6 +89,13 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Health-check endpoint — pinged every 5 min by UptimeRobot to prevent sleep
+  if (req.method === "GET" && reqUrl.pathname === "/ping") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("ok");
+    return;
+  }
+
   res.writeHead(404, { "Content-Type": "text/plain" });
   res.end("Not found");
 });
